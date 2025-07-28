@@ -366,7 +366,7 @@ export function ConversationPage({
                   {isUser && (
                     <ChatBubbleAvatar 
                       className="mt-1 flex-shrink-0 text-black"
-                      src="https://i.pravatar.cc/40?u=user"
+                      src="/2x2pic.jpg"
                       fallback="User"
                     />
                   )}

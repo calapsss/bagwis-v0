@@ -15,6 +15,10 @@ import { IndexForm } from '@/components/IndexForm'
 import SessionIndexInfo from '@/components/SessionIndexInfo'
 import { Database } from 'lucide-react'
 
+import { Jura } from "next/font/google";
+
+const logofont = Jura({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
+
 interface SessionChatProps {
   sessionId?: string
   onSessionChange?: (session: ChatSession) => void
@@ -569,7 +573,16 @@ export const SessionChat = forwardRef<SessionChatRef, SessionChatProps>(({
       
       {showEmptyState ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-6 min-h-0">
-          <div className="text-center text-2xl font-semibold text-gray-300 select-none">What can I help you find today?</div>
+          {/* <div className="text-center text-2xl font-semibold text-gray-300 select-none">What can I help you find today?</div> */}
+          <div className="text-left my-16 animate-fade-in">
+                                              <h1 className={`text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-700 via-yellow-300 to-red-600 text-transparent bg-clip-text ${logofont.className}`}>
+                                                  Hello, I&apos;m Bagwis AI.
+                                              </h1>
+                                              <p className=" text-gray-400 mt-4">
+                                                  How can I assist with your Human Resource Management tasks?
+                                              </p>
+                                              </div>
+          
           <div className="w-full max-w-2xl px-4">
             <ChatInput
               onSendMessage={sendMessage}

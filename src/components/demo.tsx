@@ -10,6 +10,11 @@ import { IndexForm } from "@/components/IndexForm";
 import SessionIndexInfo from "@/components/SessionIndexInfo";
 import IndexPicker from "@/components/IndexPicker";
 import { QuickChat } from '@/components/ui/quick-chat'
+import { Jura } from "next/font/google";
+import Image from "next/image";
+
+
+const logofont = Jura({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
 export function Demo() {
     const [currentSessionId, setCurrentSessionId] = useState<string | undefined>()
@@ -20,7 +25,7 @@ export function Demo() {
     const [homeMode, setHomeMode] = useState<'HOME' | 'INDEX' | 'CHAT_EXISTING' | 'QUICK_CHAT'>('HOME')
     const [showIndexInfo, setShowIndexInfo] = useState(false)
     const [showIndexPicker, setShowIndexPicker] = useState(false)
-    const [sidebarOpen, setSidebarOpen] = useState(true)
+    const [sidebarOpen, setSidebarOpen] = useState(false)
 
     console.log('Demo component rendering...')
 
@@ -89,13 +94,27 @@ export function Demo() {
         <div className="flex h-full w-full flex-col bg-black">
             {/* Top App Bar */}
             <header className="h-12 relative flex items-center justify-center border-b border-gray-800 flex-shrink-0">
-                <button onClick={()=>setSidebarOpen(o=>!o)} className="absolute left-4 p-1 rounded hover:bg-gray-800 text-gray-200 focus:outline-none" title="Toggle sidebar">
-                    {sidebarOpen ? <span className="text-xl leading-none">◀</span> : <span className="text-xl leading-none">▶</span>}
-                </button>
-                {homeMode !== 'HOME' && (
-                    <h1 className="text-lg font-semibold text-white">localGPT</h1>
-                )}
-            </header>
+    <button onClick={() => setSidebarOpen(o => !o)} className="absolute left-4 p-1 rounded hover:bg-gray-800 text-gray-200 focus:outline-none" title="Toggle sidebar">
+        {sidebarOpen ? <span className="text-xl leading-none">◀</span> : <span className="text-xl leading-none">▶</span>}
+    </button>
+    
+    {/* This logic remains the same, but the content inside is updated */}
+    {homeMode !== 'HOME' && (
+        // A flex container to align the logo and title side-by-side
+        <div className="flex items-center gap-2">
+            <Image 
+                src="/bagwis.png" 
+                alt="Bagwit AI Logo" 
+                className="h-8 w-auto" // Adjust height as needed
+                width={100}
+                height={100}
+            />
+            <h1 className={`${logofont.className} text-lg font-semibold text-white`}>
+                BAGWIS AI
+            </h1>
+        </div>
+    )}
+</header>
             {/* Main content row */}
             <div className="flex flex-1 flex-row min-h-0">
                 {/* Session Sidebar */}
@@ -114,8 +133,10 @@ export function Demo() {
                         <div className="flex items-center justify-center h-full">
                             <div className="space-y-8">
                                 <div className="text-center space-y-2">
-                                    <h1 className="text-4xl font-bold text-white">LocalGPT</h1>
+                                    <h1 className={`${logofont.className} text-4xl font-bold text-white`}>BAGWIS AI</h1>
                                     <p className="text-lg text-gray-400">What can I help you find today?</p>
+
+                                   
                                 </div>
 
                                 <LandingMenu onSelect={(m)=>{

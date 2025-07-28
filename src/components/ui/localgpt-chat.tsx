@@ -100,7 +100,7 @@ export function LocalGPTChat() {
                                 adjustHeight();
                             }}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask localgpt a question..."
+                            placeholder="Ask Bagwit a question..."
                             className={cn(
                                 "w-full px-4 py-3",
                                 "resize-none",
